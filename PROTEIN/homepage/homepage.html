@@ -46,6 +46,17 @@
             </div>
         </div>
 
+        <div class="popup-overlay" id="logoutPopup">
+            <div class="popup">
+                <h2>Konfirmasi Logout</h2>
+                <p>Apakah Anda yakin ingin keluar?</p>
+                <div class="popup-buttons">
+                    <button class="popup-button cancel-button" onclick="closeLogoutPopup()">Cancel</button>
+                    <button class="popup-button confirm-button" onclick="confirmLogout()">Log Out</button>
+                </div>
+            </div>
+        </div>
+
         <div class="logout-container">
             <button onclick="logout()" class="logout-button">
                 <i class="fas fa-sign-out-alt"></i>
@@ -56,8 +67,23 @@
 
     <script>
         function logout() {
+            document.getElementById('logoutPopup').style.display = 'flex';
+        }
+
+        function closeLogoutPopup() {
+            document.getElementById('logoutPopup').style.display = 'none';
+        }
+
+        function confirmLogout() {
             window.location.href = '../login/index.html';
         }
+
+        // Close popup when clicking outside
+        document.getElementById('logoutPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLogoutPopup();
+            }
+        });
     </script>
 </body>
 </html>
